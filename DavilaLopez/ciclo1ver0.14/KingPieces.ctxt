@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=KingPieces
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ KingPieces\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=row\ column\ color
+comment1.target=KingPieces(int,\ int,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ KingPieces\r\n
+comment2.params=
+comment2.target=void\ select()
+comment3.params=
+comment3.target=void\ makeInvisible()
+comment4.params=
+comment4.target=void\ removeKing()
+comment5.params=x
+comment5.target=void\ moveHorizontal(int)
+comment6.params=y
+comment6.target=void\ moveVertical(int)
+comment7.params=x\ y
+comment7.target=void\ moveking(int,\ int)
+numComments=8
