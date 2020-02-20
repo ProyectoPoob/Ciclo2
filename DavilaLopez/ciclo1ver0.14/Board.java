@@ -201,7 +201,7 @@ public class Board
             pieceSelectpos[1]=column-1;
             //System.out.println("ficha seleccionada");
         }else{
-            //JOptionPane.showMessageDialog(null,"no hay fichas en esta casilla #JEG");
+            JOptionPane.showMessageDialog(null,"no hay fichas en esta casilla #JEG");
         } 
     }
         /**
