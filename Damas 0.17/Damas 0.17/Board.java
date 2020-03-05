@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 public class Board
 {
     // instance variables - replace the example below with your own
-    private HashMap<Integer,int[]> moveOp;
+    private HashMap<String,int[]> moveOp;
     private ArrayList<Rectangle> blocks;
     public boolean[][] isFill;
     private Boolean[][] numBlocks;
@@ -57,8 +57,8 @@ public class Board
         kingPieces = new KingPieces[width][width];
         blocks = new ArrayList<Rectangle>();
         BoardInfo=new char[width][width];
-        moveOp= new HashMap<Integer,int[]>();
-        Integer contBlack= 1;
+        moveOp= new HashMap<String,int[]>();
+        int contBlack= 1;
         for(int i=0; i <BoardInfo.length;i++) 
         {
             for(int j=0; j <BoardInfo.length;j++) 
@@ -69,7 +69,7 @@ public class Board
                     if(k%2!=0)
                     {
                         BoardInfo[i][j]='.';
-                        moveOp.put(contBlack,new int[]{i,j});
+                        moveOp.put(contBlack+"",new int[]{i+1,j+1});
                         contBlack++;
                    
                     }else
@@ -317,15 +317,52 @@ public class Board
         return consult;
     }
     public void move(String notation)
-    {
-        ArrayList notationArray = new ArrayList<Integer>();
-        StringTokenizer hola = new StringTokenizer(notation,"x");
+    {   
+        for(int k=0;k<notation.length();k++)
+        {
+            System.out.println(notation.charAt(k)+" char");
+            if(notation.charAt(k)=='-')
+            {               
+                moveString(notation);
+            }else if(notation.charAt(k)=='x')
+            {
+                jumpString(notation);
+            }
+        }
+    }    
+    public void moveString(String notation)
+    {   
+        StringTokenizer hola = new StringTokenizer(notation,"-");
+        String[] notationArray = new String[hola.countTokens()];
+        int i=0;
         while (hola.hasMoreElements())
         {
-            int c=(int) hola.nextElement();
-            notationArray.add(c);
+            String c=hola.nextToken();
+            notationArray[i]=c;
+            i++;
         }
-
+        for(int j=1;j<notationArray.length;j++)
+        {
+            remove(moveOp.get(notationArray[j-1])[0],moveOp.get(notationArray[j-1])[1]);
+            add(moveOp.get(notationArray[j])[0],moveOp.get(notationArray[j])[1],"white");
+        }
+    }
+    public void jumpString(String notation)
+    {   
+        StringTokenizer hola = new StringTokenizer(notation,"x");
+        String[] notationArray = new String[hola.countTokens()];
+        int i=0;
+        while (hola.hasMoreElements())
+        {
+            String c=hola.nextToken();
+            notationArray[i]=c;
+            i++;
+        }
+        for(int j=1;j<notationArray.length;j++)
+        {
+            remove(moveOp.get(notationArray[j-1])[0],moveOp.get(notationArray[j-1])[1]);
+            add(moveOp.get(notationArray[j])[0],moveOp.get(notationArray[j])[1],"white");
+        }
     }
     /**
      * Selecciona una ficha del tablero

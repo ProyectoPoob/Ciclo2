@@ -78,8 +78,8 @@ public class Checkers
         {
             if(isSwapped)
             {
-                boardActive.moveKing(notation,1);
-                boardActive.move(notation,1);     
+                boardActive.move(notation);
+                boardActive.moveKing(notation,1);                   
                 itWorks=true;
             } else
             {
