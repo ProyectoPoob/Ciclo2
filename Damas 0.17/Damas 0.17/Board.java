@@ -1,9 +1,11 @@
-import java.util.*;
+
 import javax.swing.JOptionPane;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.StringTokenizer; 
 /**
      * Tablero del Juego de damas
      *
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class Board
 {
     // instance variables - replace the example below with your own
+    private HashMap<Integer,int[]> moveOp;
     private ArrayList<Rectangle> blocks;
     public boolean[][] isFill;
     private Boolean[][] numBlocks;
@@ -54,6 +57,8 @@ public class Board
         kingPieces = new KingPieces[width][width];
         blocks = new ArrayList<Rectangle>();
         BoardInfo=new char[width][width];
+        moveOp= new HashMap<Integer,int[]>();
+        Integer contBlack= 1;
         for(int i=0; i <BoardInfo.length;i++) 
         {
             for(int j=0; j <BoardInfo.length;j++) 
@@ -64,6 +69,9 @@ public class Board
                     if(k%2!=0)
                     {
                         BoardInfo[i][j]='.';
+                        moveOp.put(contBlack,new int[]{i,j});
+                        contBlack++;
+                   
                     }else
                     {
                         BoardInfo[i][j]='-';
@@ -308,7 +316,17 @@ public class Board
         }
         return consult;
     }
-    
+    public void move(String notation)
+    {
+        ArrayList notationArray = new ArrayList<Integer>();
+        StringTokenizer hola = new StringTokenizer(notation,"x");
+        while (hola.hasMoreElements())
+        {
+            int c=(int) hola.nextElement();
+            notationArray.add(c);
+        }
+
+    }
     /**
      * Selecciona una ficha del tablero
      * @param row entero, posicion en fila
